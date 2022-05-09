@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ysl.dao.DeptDao.DeptMapper">
+    <insert id="addDept" parameterType="dept">
+        insert into course.dept (deptno, dname, loc) values (#{deptno},#{dname},#{loc});
+    </insert>
+
+    <delete id="delDept" parameterType="int">
+        delete
+        from course.dept
+        where deptno = #{deptno};
+    </delete>
+
+    <update id="updateDept" parameterType="dept">
+        update course.dept
+        set  dname = #{dname},
+             loc = #{loc}
+        where deptno = #{deptno};
+    </update>
+
+    <select id="queryAll" resultType="dept">
+        select * from course.dept;
+    </select>
+
+    <select id="queryDeptById" resultType="dept">
+        select * from course.dept where deptno = #{deptno};
+    </select>
+
+    <select id="queryByName" resultType="dept">
+        select *
+        from course.dept
+        where dname like concat('%',#{dname},'%');
+    </select>
+
+</mapper>

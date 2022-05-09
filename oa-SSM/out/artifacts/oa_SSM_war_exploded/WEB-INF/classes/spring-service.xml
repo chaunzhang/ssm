@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--1.扫描service的包-->
+    <context:component-scan base-package="com.ysl.service"/>
+    <!--2.将业务类注入到spring，通过配置文件或者注解实现-->
+    <bean id="DeptServiceImpl" class="com.ysl.service.DeptService.DeptMapperServiceImpl">
+        <property name="deptMapper" ref="deptMapper"/>
+    </bean>
+
+    <bean id="UserServiceImpl" class="com.ysl.service.UserService.UserMapperServiceImpl">
+        <property name="userMapper" ref="userMapper"/>
+    </bean>
+
+    <!--3.配置事务-->
+    <bean id="TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>
